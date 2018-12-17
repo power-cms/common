@@ -1,3 +1,5 @@
+export * from './acl/acl';
+
 export * from './action/action-handler';
 export * from './action/base-collection.action';
 export * from './action/base-create.action';
