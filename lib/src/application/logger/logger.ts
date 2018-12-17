@@ -1,6 +1,6 @@
-export type ILogMethod = (level: string, msg: string) => ILogger;
+export type ILogMethod = (level: string, msg: string) => any;
 
-export type ILeveledLogMethod = (msg: string) => ILogger;
+export type ILeveledLogMethod = (msg: string) => any;
 
 export interface ILogger {
   log: ILogMethod;
