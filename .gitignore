@@ -5,3 +5,11 @@ node_modules
 docker-compose.yml
 .scannerwork
 coverage
+
+/src
+/application.d.ts
+/application.js
+/infrastructure.d.ts
+/infrastructure.js
+/domain.d.ts
+/domain.js
