@@ -1,6 +1,6 @@
 {
   "name": "@power-cms/common",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "PowerCms - Common package",
   "repository": "https://github.com/Qcumbeer/power-cms-common",
   "scripts": {
