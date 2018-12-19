@@ -2,11 +2,11 @@ import { IActionData } from '../../application/action/action-handler';
 import { IRemoteProcedure } from '../../application/remote-procedure/remote-procedure';
 
 export class Acl {
-  constructor(private remoteProcedure: IRemoteProcedure, private readonly resource = {}, private rules: any = {}) {
+  constructor(private remoteProcedure: IRemoteProcedure, private readonly action: IActionData = {}, private rules: any = {}) {
   }
 
-  public createBuilder(resource: any): Acl {
-    return new Acl(this.remoteProcedure, resource);
+  public createBuilder(action: IActionData): Acl {
+    return new Acl(this.remoteProcedure, action);
   }
 
   public isAdmin(): Acl {
@@ -28,12 +28,13 @@ export class Acl {
   }
 
   public async check(): Promise<boolean> {
-    const {rules, resource} = this;
+    const {rules, action} = this;
 
-    const action: IActionData = {
-      data: {rules, resource}
+    const authorizeAction: IActionData = {
+      ...action,
+      data: {rules, resource: action.data},
     };
 
-    return !!this.remoteProcedure.call('auth', 'authorize', action);
+    return !! await this.remoteProcedure.call('auth', 'authorize', authorizeAction);
   }
 }

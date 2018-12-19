@@ -1,5 +1,6 @@
 import { IRemoteProcedure } from '../remote-procedure/remote-procedure';
 import { Acl } from './acl';
+import { IActionData } from '../action/action-handler';
 
 const RemoteProcedureMock = jest.fn<IRemoteProcedure>(() => ({
   call: jest.fn()
@@ -10,10 +11,10 @@ describe('Acl', () => {
     const remoteProcedure = new RemoteProcedureMock();
 
     const aclFactory = new Acl(remoteProcedure);
-    const resource = {foo: 'bar'};
+    const action: IActionData = {data: {foo: 'bar'}, auth: {id: 'user-id'}};
 
     await aclFactory
-      .createBuilder(resource)
+      .createBuilder(action)
       .isAdmin()
       .isAuthenticated()
       .isOwner()
@@ -24,12 +25,15 @@ describe('Acl', () => {
       'authorize',
       {
         data: {
-          resource,
+          resource: {foo: 'bar'},
           rules: {
             roles: ['Admin'],
             isAuthenticated: true,
             isOwner: true
           }
+        },
+        auth: {
+          id: 'user-id'
         }
       }
     );
@@ -39,10 +43,10 @@ describe('Acl', () => {
     const remoteProcedure = new RemoteProcedureMock();
 
     const aclFactory = new Acl(remoteProcedure);
-    const resource = {foo: 'bar'};
+    const action: IActionData = {data: {foo: 'bar'}};
 
     await aclFactory
-      .createBuilder(resource)
+      .createBuilder(action)
       .isAdmin()
       .isOwner()
       .check();
@@ -52,7 +56,7 @@ describe('Acl', () => {
       'authorize',
       {
         data: {
-          resource,
+          resource: {foo: 'bar'},
           rules: {
             roles: ['Admin'],
             isOwner: true

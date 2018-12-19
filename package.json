@@ -1,6 +1,6 @@
 {
   "name": "@power-cms/common",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "PowerCms - Common package",
   "repository": "https://github.com/Qcumbeer/power-cms-common",
   "scripts": {
@@ -47,7 +47,8 @@
     "collectCoverageFrom": [
       "lib/**/*.ts",
       "!lib/**/index.ts",
-      "!lib/*.ts"
+      "!lib/*.ts",
+      "!lib/**/null.*.ts"
     ],
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
