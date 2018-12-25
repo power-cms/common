@@ -1,5 +1,7 @@
 # :rocket: PowerCms - Common package
 
+[![Build Status](https://travis-ci.com/power-cms/common.svg?branch=master)](https://travis-ci.com/power-cms/common)
+
 ## How to install?
 
 ```bash
