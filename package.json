@@ -1,8 +1,8 @@
 {
   "name": "@power-cms/common",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "PowerCms - Common package",
-  "repository": "https://github.com/Qcumbeer/power-cms-common",
+  "repository": "https://github.com/power-cms/common",
   "scripts": {
     "test": "jest --coverage --runInBand --detectOpenHandles",
     "type-check": "ls | grep -E \"src|\\.d\\.ts$|\\.js$\" | xargs rm -rf && tsc --noEmit",

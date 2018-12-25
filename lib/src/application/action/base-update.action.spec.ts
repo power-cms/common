@@ -2,6 +2,7 @@ import { BaseUpdateAction } from './base-update.action';
 import { ISingleQuery } from "../query/single.query";
 import { Id } from '../../domain/id/id';
 import { ICommandHandler } from '../command/command-handler';
+import { IActionData } from './action-handler';
 
 const id = 'testId';
 
@@ -14,6 +15,9 @@ const SingleQueryMock = jest.fn<ISingleQuery<any>>(() => ({
 }));
 
 class MockUpdateAciton extends BaseUpdateAction<any> {
+  public async authorize(action: IActionData): Promise<boolean> {
+    return true;
+  }
 }
 
 describe('Base update action', () => {

@@ -3,11 +3,10 @@ import { ICommandHandler } from "../command/command-handler";
 import { ISingleQuery } from "../query/single.query";
 import { ActionType, IActionData, IActionHandler } from "./action-handler";
 
-export class BaseUpdateAction<T> implements IActionHandler {
+export abstract class BaseUpdateAction<T> implements IActionHandler {
   public name: string = 'update';
   public type: ActionType = ActionType.UPDATE;
   public validator?: any;
-  public authorize?: (action: IActionData) => Promise<boolean>;
 
   constructor(private handler: ICommandHandler, private query: ISingleQuery<T>) {
   }
@@ -18,4 +17,6 @@ export class BaseUpdateAction<T> implements IActionHandler {
 
     return this.query.get(Id.fromString(id));
   }
+
+  public abstract authorize(action: IActionData): Promise<boolean>;
 }

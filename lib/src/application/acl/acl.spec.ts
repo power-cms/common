@@ -65,4 +65,25 @@ describe('Acl', () => {
       }
     );
   });
+
+  it('Uses custom rule', async () => {
+    const remoteProcedure = new RemoteProcedureMock();
+
+    const aclFactory = new Acl(remoteProcedure);
+    const action: IActionData = {data: {foo: 'bar'}};
+
+    const trueResult = await aclFactory
+      .createBuilder(action)
+      .custom(data => data.foo === 'bar')
+      .check();
+
+    expect(trueResult).toBe(true);
+
+    const falseResult = await aclFactory
+      .createBuilder(action)
+      .custom(data => data.foo === 'fakeBar')
+      .check();
+
+    expect(falseResult).toBe(false);
+  });
 });

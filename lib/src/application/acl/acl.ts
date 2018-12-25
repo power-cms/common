@@ -1,8 +1,16 @@
 import { IActionData } from '../../application/action/action-handler';
 import { IRemoteProcedure } from '../../application/remote-procedure/remote-procedure';
 
+export type ICustomRule = (actionData: any) => boolean;
+
 export class Acl {
-  constructor(private remoteProcedure: IRemoteProcedure, private readonly action: IActionData = {}, private rules: any = {}) {
+  private rules: any = {};
+  private customRule?: ICustomRule;
+
+  constructor(
+    private remoteProcedure: IRemoteProcedure,
+    private readonly action: IActionData = {},
+  ) {
   }
 
   public createBuilder(action: IActionData): Acl {
@@ -27,8 +35,18 @@ export class Acl {
     return this;
   }
 
+  public custom(customRule: ICustomRule): Acl {
+    this.customRule = customRule;
+
+    return this;
+  }
+
   public async check(): Promise<boolean> {
     const {rules, action} = this;
+
+    if (this.customRule && this.customRule(action.data)) {
+      return true;
+    }
 
     const authorizeAction: IActionData = {
       ...action,

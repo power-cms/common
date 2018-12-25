@@ -2,6 +2,7 @@ import { BaseCreateAction } from './base-create.action';
 import { ICommandHandler } from '../command/command-handler';
 import { ISingleQuery } from "../query/single.query";
 import { Id } from '../../domain/id/id';
+import { IActionData } from './action-handler';
 
 const id = 'testId';
 
@@ -20,6 +21,9 @@ jest.mock('../../domain/id/id.generator', () => {
 });
 
 class MockCreateAciton extends BaseCreateAction<any> {
+  public async authorize(action: IActionData): Promise<boolean> {
+    return true;
+  }
 }
 
 describe('Base create action', () => {

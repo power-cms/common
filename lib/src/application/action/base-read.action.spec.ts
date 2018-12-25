@@ -1,6 +1,7 @@
 import { ISingleQuery } from '../query/single.query';
 import { BaseReadAction } from './base-read.action';
 import { Id } from '../../domain/id/id';
+import { IActionData } from './action-handler';
 
 const id = 'testId';
 
@@ -9,6 +10,9 @@ const QueryMock = jest.fn<ISingleQuery<any>>(() => ({
 }));
 
 class MockReadAciton extends BaseReadAction<any> {
+  public async authorize(action: IActionData): Promise<boolean> {
+    return true;
+  }
 }
 
 describe('Base read action', () => {
