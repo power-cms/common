@@ -1,6 +1,7 @@
 # :rocket: PowerCms - Common package
 
 [![Build Status](https://travis-ci.com/power-cms/common.svg?branch=master)](https://travis-ci.com/power-cms/common)
+[![Coverage Status](https://coveralls.io/repos/github/power-cms/common/badge.svg)](https://coveralls.io/github/power-cms/common)
 
 ## How to install?
 
