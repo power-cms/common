@@ -7,11 +7,7 @@ export class Acl {
   private rules: any = {};
   private customRule?: ICustomRule;
 
-  constructor(
-    private remoteProcedure: IRemoteProcedure,
-    private readonly action: IActionData = {},
-  ) {
-  }
+  constructor(private remoteProcedure: IRemoteProcedure, private readonly action: IActionData = {}) {}
 
   public createBuilder(action: IActionData): Acl {
     return new Acl(this.remoteProcedure, action);
@@ -42,7 +38,7 @@ export class Acl {
   }
 
   public async check(): Promise<boolean> {
-    const {rules, action} = this;
+    const { rules, action } = this;
 
     if (this.customRule && this.customRule(action.data)) {
       return true;
@@ -50,9 +46,9 @@ export class Acl {
 
     const authorizeAction: IActionData = {
       ...action,
-      data: {rules, resource: action.data},
+      data: { rules, resource: action.data },
     };
 
-    return !! await this.remoteProcedure.call('auth', 'authorize', authorizeAction);
+    return !!(await this.remoteProcedure.call('auth', 'authorize', authorizeAction));
   }
 }

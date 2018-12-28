@@ -15,18 +15,15 @@ const logger = new LoggerMock();
 
 describe('Command handler logger', () => {
   it('Logs success command', async () => {
-    const data = {foo: 'bar'};
+    const data = { foo: 'bar' };
 
     const innerHandler: ICommandHandler = {
-      handle: (handlerData) => {
+      handle: handlerData => {
         return Promise.resolve(handlerData);
-      }
+      },
     };
 
-    const handler = new CommandHandlerLogger(
-      logger,
-      innerHandler
-    );
+    const handler = new CommandHandlerLogger(logger, innerHandler);
 
     const result = await handler.handle(data);
     expect(result).toEqual(data);
@@ -34,36 +31,30 @@ describe('Command handler logger', () => {
   });
 
   it('Hides protected fields', async () => {
-    const data = {password: 'super secret password'};
+    const data = { password: 'super secret password' };
 
     const innerHandler: ICommandHandler = {
-      handle: (handlerData) => {
+      handle: handlerData => {
         return Promise.resolve(handlerData);
-      }
+      },
     };
 
-    const handler = new CommandHandlerLogger(
-      logger,
-      innerHandler
-    );
+    const handler = new CommandHandlerLogger(logger, innerHandler);
 
     await handler.handle(data);
     expect(logger.info).toBeCalledWith('Object successfully handled command {"password":"****"}');
   });
 
   it('Handles nested data', async () => {
-    const data = {foo: {bar: {hello: 'world'}}};
+    const data = { foo: { bar: { hello: 'world' } } };
 
     const innerHandler: ICommandHandler = {
-      handle: (handlerData) => {
+      handle: handlerData => {
         return Promise.resolve(handlerData);
-      }
+      },
     };
 
-    const handler = new CommandHandlerLogger(
-      logger,
-      innerHandler
-    );
+    const handler = new CommandHandlerLogger(logger, innerHandler);
 
     await handler.handle(data);
     expect(logger.info).toBeCalledWith('Object successfully handled command {"foo":{"bar":{"hello":"world"}}}');
@@ -73,18 +64,15 @@ describe('Command handler logger', () => {
     const innerHandler: ICommandHandler = {
       handle: () => {
         throw new Error('Some reason');
-      }
+      },
     };
 
-    const handler = new CommandHandlerLogger(
-      logger,
-      innerHandler
-    );
+    const handler = new CommandHandlerLogger(logger, innerHandler);
 
     expect.assertions(2);
 
     try {
-      await handler.handle({foo: 'bar'});
+      await handler.handle({ foo: 'bar' });
     } catch (e) {
       expect(e).toBeDefined();
     }

@@ -1,4 +1,4 @@
-import { ObjectID } from 'bson';
+import { ObjectID } from 'mongodb';
 import { Id } from '../../domain/id/id';
 
 export const ObjectIDFactory = {
@@ -7,5 +7,5 @@ export const ObjectIDFactory = {
   },
   fromString: (id: string): ObjectID => {
     return new ObjectID(id);
-  }
+  },
 };

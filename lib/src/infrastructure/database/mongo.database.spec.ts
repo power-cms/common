@@ -1,13 +1,13 @@
-import { createDatabaseConnection } from "./mongo.database";
+import { createDatabaseConnection } from './mongo.database';
 import { MongoClient } from 'mongodb';
 
-const fakeDb = {fakeDbObject: true};
+const fakeDb = { fakeDbObject: true };
 const db = jest.fn(() => fakeDb);
 
 jest.mock('mongodb', () => ({
   MongoClient: {
-    connect: jest.fn(() => ({db}))
-  }
+    connect: jest.fn(() => ({ db })),
+  },
 }));
 
 describe('Mongo database', () => {

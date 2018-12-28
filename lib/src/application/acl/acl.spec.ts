@@ -3,7 +3,7 @@ import { Acl } from './acl';
 import { IActionData } from '../action/action-handler';
 
 const RemoteProcedureMock = jest.fn<IRemoteProcedure>(() => ({
-  call: jest.fn()
+  call: jest.fn(),
 }));
 
 describe('Acl', () => {
@@ -11,7 +11,7 @@ describe('Acl', () => {
     const remoteProcedure = new RemoteProcedureMock();
 
     const aclFactory = new Acl(remoteProcedure);
-    const action: IActionData = {data: {foo: 'bar'}, auth: {id: 'user-id'}};
+    const action: IActionData = { data: { foo: 'bar' }, auth: { id: 'user-id' } };
 
     await aclFactory
       .createBuilder(action)
@@ -20,30 +20,26 @@ describe('Acl', () => {
       .isOwner()
       .check();
 
-    expect(remoteProcedure.call).toBeCalledWith(
-      'auth',
-      'authorize',
-      {
-        data: {
-          resource: {foo: 'bar'},
-          rules: {
-            roles: ['Admin'],
-            isAuthenticated: true,
-            isOwner: true
-          }
+    expect(remoteProcedure.call).toBeCalledWith('auth', 'authorize', {
+      data: {
+        resource: { foo: 'bar' },
+        rules: {
+          roles: ['Admin'],
+          isAuthenticated: true,
+          isOwner: true,
         },
-        auth: {
-          id: 'user-id'
-        }
-      }
-    );
+      },
+      auth: {
+        id: 'user-id',
+      },
+    });
   });
 
   it('Builds acl call with some options', async () => {
     const remoteProcedure = new RemoteProcedureMock();
 
     const aclFactory = new Acl(remoteProcedure);
-    const action: IActionData = {data: {foo: 'bar'}};
+    const action: IActionData = { data: { foo: 'bar' } };
 
     await aclFactory
       .createBuilder(action)
@@ -51,26 +47,22 @@ describe('Acl', () => {
       .isOwner()
       .check();
 
-    expect(remoteProcedure.call).toBeCalledWith(
-      'auth',
-      'authorize',
-      {
-        data: {
-          resource: {foo: 'bar'},
-          rules: {
-            roles: ['Admin'],
-            isOwner: true
-          }
-        }
-      }
-    );
+    expect(remoteProcedure.call).toBeCalledWith('auth', 'authorize', {
+      data: {
+        resource: { foo: 'bar' },
+        rules: {
+          roles: ['Admin'],
+          isOwner: true,
+        },
+      },
+    });
   });
 
   it('Uses custom rule', async () => {
     const remoteProcedure = new RemoteProcedureMock();
 
     const aclFactory = new Acl(remoteProcedure);
-    const action: IActionData = {data: {foo: 'bar'}};
+    const action: IActionData = { data: { foo: 'bar' } };
 
     const trueResult = await aclFactory
       .createBuilder(action)

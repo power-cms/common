@@ -1,5 +1,5 @@
-import { IUpdateRepository } from "../../domain/repository/update.repository";
-import { ICommandHandler } from "./command-handler";
+import { IUpdateRepository } from '../../domain/repository/update.repository';
+import { ICommandHandler } from './command-handler';
 
 export abstract class BaseUpdateCommandHandler<T, C> implements ICommandHandler {
   constructor(private repository: IUpdateRepository<T>) {}

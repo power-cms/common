@@ -1,5 +1,5 @@
-import { ICreateRepository } from "../../domain/repository/create.repository";
-import { ICommandHandler } from "./command-handler";
+import { ICreateRepository } from '../../domain/repository/create.repository';
+import { ICommandHandler } from './command-handler';
 
 export abstract class BaseCreateCommandHandler<T, C> implements ICommandHandler {
   constructor(private repository: ICreateRepository<T>) {}

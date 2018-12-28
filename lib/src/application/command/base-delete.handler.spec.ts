@@ -10,7 +10,7 @@ const RepositoryMock = jest.fn<IDeleteRepository>(() => ({
 type Transformer = (command: any) => any;
 
 class MockDeleteAciton extends BaseDeleteCommandHandler<any> {
-  protected getId = jest.fn<Transformer>((data) => data.id);
+  protected getId = jest.fn<Transformer>(data => data.id);
 }
 
 describe('Base delete handler', () => {
@@ -18,7 +18,7 @@ describe('Base delete handler', () => {
     const repository = new RepositoryMock();
     const action = new MockDeleteAciton(repository);
 
-    await action.handle({id});
+    await action.handle({ id });
 
     expect(repository.delete).toBeCalledWith(id);
   });

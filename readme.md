@@ -12,9 +12,9 @@ npm install --save @power-cms/common
 ## How to test?
 
 ```bash
-npm run test
+npm test
 ```
 
-## Licence
+## License
 
-Copyright &copy; 2018 by Szymon Piecuch under ISC licence.
+Copyright &copy; 2018 by Szymon Piecuch under ISC license.

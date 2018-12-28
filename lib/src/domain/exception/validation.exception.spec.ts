@@ -1,4 +1,4 @@
-import { ValidationException } from "./validation.exception";
+import { ValidationException } from './validation.exception';
 
 describe('Validation exception', () => {
   it('Parses joi exception', () => {
@@ -8,18 +8,20 @@ describe('Validation exception', () => {
       isJoi: true,
       annotate: () => 'test',
       _object: {},
-      details: [{
-        message: 'Field is required',
-        type: 'required',
-        path: ['foo', 'bar']
-      }],
-    })
+      details: [
+        {
+          message: 'Field is required',
+          type: 'required',
+          path: ['foo', 'bar'],
+        },
+      ],
+    });
 
     expect(exception.details).toEqual([
       {
         path: 'foo.bar',
-        message: 'required'
-      }
+        message: 'required',
+      },
     ]);
-  })
+  });
 });

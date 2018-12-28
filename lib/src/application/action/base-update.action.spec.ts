@@ -1,5 +1,5 @@
 import { BaseUpdateAction } from './base-update.action';
-import { ISingleQuery } from "../query/single.query";
+import { ISingleQuery } from '../query/single.query';
 import { Id } from '../../domain/id/id';
 import { ICommandHandler } from '../command/command-handler';
 import { IActionData } from './action-handler';
@@ -22,14 +22,14 @@ class MockUpdateAciton extends BaseUpdateAction<any> {
 
 describe('Base update action', () => {
   it('Updates resource', async () => {
-    const handler = new CommandHandlerMock()
+    const handler = new CommandHandlerMock();
     const query = new SingleQueryMock();
     const action = new MockUpdateAciton(handler, query);
-    const data = {foo: 'bar'};
+    const data = { foo: 'bar' };
 
-    await action.handle({data, params: {id}});
+    await action.handle({ data, params: { id } });
 
-    expect(handler.handle).toBeCalledWith({...data, id});
+    expect(handler.handle).toBeCalledWith({ ...data, id });
     expect(query.get).toBeCalledWith(Id.fromString(id));
   });
 });

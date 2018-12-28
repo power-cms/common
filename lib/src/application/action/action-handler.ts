@@ -5,7 +5,7 @@ export enum ActionType {
   READ = 'read',
   UPDATE = 'update',
   DELETE = 'delete',
-  COLLECTION = 'collection'
+  COLLECTION = 'collection',
 }
 
 export interface IActionData {

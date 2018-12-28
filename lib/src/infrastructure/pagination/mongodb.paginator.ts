@@ -2,7 +2,6 @@ import { Collection } from 'mongodb';
 import { Pagination } from '../../application/pagination/pagination';
 import { IPaginationView } from '../../application/pagination/pagination.view';
 
-
 export class MongodbPaginator {
   public async paginate<T>(
     collection: Collection,
@@ -22,7 +21,7 @@ export class MongodbPaginator {
     return {
       data: data.map(callback),
       page,
-      totalPages: Math.ceil(total / limit)
+      totalPages: Math.ceil(total / limit),
     };
   }
 }

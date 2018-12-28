@@ -1,6 +1,6 @@
 import { BaseCreateAction } from './base-create.action';
 import { ICommandHandler } from '../command/command-handler';
-import { ISingleQuery } from "../query/single.query";
+import { ISingleQuery } from '../query/single.query';
 import { Id } from '../../domain/id/id';
 import { IActionData } from './action-handler';
 
@@ -16,8 +16,8 @@ const SingleQueryMock = jest.fn<ISingleQuery<any>>(() => ({
 
 jest.mock('../../domain/id/id.generator', () => {
   return {
-    generate: () => id
-  }
+    generate: () => id,
+  };
 });
 
 class MockCreateAciton extends BaseCreateAction<any> {
@@ -28,14 +28,14 @@ class MockCreateAciton extends BaseCreateAction<any> {
 
 describe('Base create action', () => {
   it('Creates new resource', async () => {
-    const handler = new CommandHandlerMock()
+    const handler = new CommandHandlerMock();
     const query = new SingleQueryMock();
     const action = new MockCreateAciton(handler, query);
-    const data = {foo: 'bar'};
+    const data = { foo: 'bar' };
 
-    await action.handle({data});
+    await action.handle({ data });
 
-    expect(handler.handle).toBeCalledWith({...data, id});
+    expect(handler.handle).toBeCalledWith({ ...data, id });
     expect(query.get).toBeCalledWith(Id.fromString(id));
   });
 });

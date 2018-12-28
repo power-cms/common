@@ -1,5 +1,5 @@
-import { Id } from "../../domain/id/id";
+import { Id } from '../../domain/id/id';
 
 export interface ISingleQuery<T> {
-  get(id: Id): Promise<T>
+  get(id: Id): Promise<T>;
 }

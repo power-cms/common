@@ -1,4 +1,4 @@
-import { BaseDeleteAction,  } from './base-delete.action';
+import { BaseDeleteAction } from './base-delete.action';
 import { ICommandHandler } from '../command/command-handler';
 import { IActionData } from './action-handler';
 
@@ -18,8 +18,8 @@ describe('Base delete action', () => {
     const handler = new CommandHandlerMock();
     const action = new MockDeleteAciton(handler);
 
-    await action.handle({params: {id}});
+    await action.handle({ params: { id } });
 
-    expect(handler.handle).toBeCalledWith({id});
+    expect(handler.handle).toBeCalledWith({ id });
   });
 });

@@ -10,12 +10,12 @@ const CollectionMock = jest.fn<Collection>(() => ({
       })),
     })),
   })),
-  estimatedDocumentCount: jest.fn(() => 1)
+  estimatedDocumentCount: jest.fn(() => 1),
 }));
 
 const PaginationMock = jest.fn<Pagination>(() => ({
   getPage: () => 1,
-  getLimit: () => 10
+  getLimit: () => 10,
 }));
 
 describe('Mongodb paginator', () => {

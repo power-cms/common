@@ -9,7 +9,10 @@ coverage
 /src
 /application.d.ts
 /application.js
+/application.js.map
 /infrastructure.d.ts
 /infrastructure.js
+/infrastructure.js.map
 /domain.d.ts
 /domain.js
+/domain.js.map

@@ -5,7 +5,8 @@
     "declaration": true,
     "strict": true,
     "allowSyntheticDefaultImports": false,
-    "outDir": "./"
+    "outDir": "./",
+    "sourceMap": true
   },
   "exclude": [
     "node_modules",

@@ -13,7 +13,7 @@ describe('Pagination', () => {
 
   it('Paginates data with given params', () => {
     const actionData: IActionData = {
-      query: {page: 3, limit: 25}
+      query: { page: 3, limit: 25 },
     };
 
     const pagination = Pagination.fromRequest(actionData);

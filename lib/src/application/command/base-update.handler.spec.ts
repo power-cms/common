@@ -8,14 +8,14 @@ const RepositoryMock = jest.fn<IUpdateRepository<any>>(() => ({
 type Transformer = (command: any) => any;
 
 class MockUpdateAciton extends BaseUpdateCommandHandler<any, any> {
-  protected transform = jest.fn<Transformer>((data) => data);
+  protected transform = jest.fn<Transformer>(data => data);
 }
 
 describe('Base update handler', () => {
   it('Handles update command', async () => {
     const repository = new RepositoryMock();
     const action = new MockUpdateAciton(repository);
-    const data = {foo: 'bar'};
+    const data = { foo: 'bar' };
 
     await action.handle(data);
 

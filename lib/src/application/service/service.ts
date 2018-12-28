@@ -1,4 +1,4 @@
-import { IActionHandler } from "../action/action-handler";
+import { IActionHandler } from '../action/action-handler';
 
 export interface IErrorResponse {
   message: string;
@@ -6,8 +6,7 @@ export interface IErrorResponse {
   details?: any;
 }
 
-
 export interface IService {
   name: string;
-  actions: IActionHandler[]
+  actions: IActionHandler[];
 }

@@ -1,7 +1,9 @@
 import { ICommandHandler } from '../command/command-handler';
 import { ILogger } from './logger';
 
-interface ICommand {[prop: string]: any}
+interface ICommand {
+  [prop: string]: any;
+}
 
 export class CommandHandlerLogger implements ICommandHandler {
   private static sensitiveKeys = ['buffer', 'password'];
@@ -26,8 +28,8 @@ export class CommandHandlerLogger implements ICommandHandler {
   private prepareData(command: ICommand): ICommand {
     const log: ICommand = {};
 
-    for(const prop in command) {
-      if(CommandHandlerLogger.sensitiveKeys.indexOf(prop) !== -1) {
+    for (const prop in command) {
+      if (CommandHandlerLogger.sensitiveKeys.indexOf(prop) !== -1) {
         log[prop] = '****';
       } else if (typeof command[prop] === 'object') {
         log[prop] = this.prepareData(command[prop]);
