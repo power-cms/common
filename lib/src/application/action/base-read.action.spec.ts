@@ -20,7 +20,7 @@ describe('Base read action', () => {
     const query = new QueryMock();
     const action = new MockReadAciton(query);
 
-    await action.handle({ params: { id } });
+    await action.execute({ params: { id } });
 
     expect(query.get).toBeCalledWith(Id.fromString(id));
   });

@@ -6,6 +6,7 @@ export * from './action/base-create.action';
 export * from './action/base-delete.action';
 export * from './action/base-read.action';
 export * from './action/base-update.action';
+export * from './action/base.action';
 
 export * from './command/command-handler';
 export * from './command/base-create.handler';

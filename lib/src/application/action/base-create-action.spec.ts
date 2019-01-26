@@ -33,7 +33,7 @@ describe('Base create action', () => {
     const action = new MockCreateAciton(handler, query);
     const data = { foo: 'bar' };
 
-    await action.handle({ data });
+    await action.execute({ data });
 
     expect(handler.handle).toBeCalledWith({ ...data, id });
     expect(query.get).toBeCalledWith(Id.fromString(id));

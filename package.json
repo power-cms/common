@@ -16,6 +16,9 @@
     "name": "Szymon Piecuch",
     "email": "szymek.piecuch@gmail.com"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "src",
     "*.d.ts",

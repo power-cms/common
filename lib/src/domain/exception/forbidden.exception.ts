@@ -5,7 +5,7 @@ export class ForbiddenException extends DomainException {
     return new ForbiddenException('You are not authorized to perform this action.');
   }
 
-  private constructor(message: string) {
+  protected constructor(message: string) {
     super(message);
   }
 }
