@@ -10,7 +10,8 @@ export const getDecorator = (container: AwilixContainer) => ({
       [innerKey]: awilix.asClass<T>(className),
       [key]: awilix
         .asClass<Y>(decoratorName)
-        .inject((awilixContainer: AwilixContainer) => ({ [innerName]: awilixContainer.resolve<T>(innerKey) })),
+        .inject((awilixContainer: AwilixContainer) => ({ [innerName]: awilixContainer.resolve<T>(innerKey) }))
+        .singleton(),
     });
   },
 });

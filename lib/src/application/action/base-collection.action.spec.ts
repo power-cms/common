@@ -17,7 +17,7 @@ describe('Base collection action', () => {
     const query = new QueryMock();
     const action = new MockCollectionAciton(query);
 
-    await action.handle({});
+    await action.execute({});
 
     expect(query.getAll).toBeCalled();
   });

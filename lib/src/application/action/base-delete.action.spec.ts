@@ -18,7 +18,7 @@ describe('Base delete action', () => {
     const handler = new CommandHandlerMock();
     const action = new MockDeleteAciton(handler);
 
-    await action.handle({ params: { id } });
+    await action.execute({ params: { id } });
 
     expect(handler.handle).toBeCalledWith({ id });
   });

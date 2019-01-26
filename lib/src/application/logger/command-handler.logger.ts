@@ -10,7 +10,7 @@ export class CommandHandlerLogger implements ICommandHandler {
 
   constructor(private logger: ILogger, private inner: ICommandHandler) {}
 
-  public handle(data: any): Promise<any> {
+  public async handle(data: any): Promise<any> {
     const handlerName: string = this.inner.constructor.name;
 
     const dataString: string = JSON.stringify(this.prepareData(data));
@@ -21,7 +21,7 @@ export class CommandHandlerLogger implements ICommandHandler {
       return result;
     } catch (e) {
       this.logger.error(`${handlerName} couldn't handle command ${dataString} with reason: ${e.message}`);
-      return Promise.reject(e);
+      throw e;
     }
   }
 

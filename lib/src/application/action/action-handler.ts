@@ -1,5 +1,3 @@
-import { JoiObject } from 'joi';
-
 export enum ActionType {
   CREATE = 'create',
   READ = 'read',
@@ -19,7 +17,6 @@ export interface IActionHandler {
   name: string;
   type: ActionType;
   private?: boolean;
-  handle: (action: IActionData) => Promise<any>;
-  validator?: JoiObject;
+  execute: (action: IActionData) => Promise<any>;
   authorize?: (action: IActionData) => Promise<boolean>;
 }

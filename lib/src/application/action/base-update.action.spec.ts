@@ -27,7 +27,7 @@ describe('Base update action', () => {
     const action = new MockUpdateAciton(handler, query);
     const data = { foo: 'bar' };
 
-    await action.handle({ data, params: { id } });
+    await action.execute({ data, params: { id } });
 
     expect(handler.handle).toBeCalledWith({ ...data, id });
     expect(query.get).toBeCalledWith(Id.fromString(id));

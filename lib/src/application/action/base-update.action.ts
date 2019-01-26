@@ -1,21 +1,24 @@
 import { Id } from '../../domain/id/id';
 import { ICommandHandler } from '../command/command-handler';
 import { ISingleQuery } from '../query/single.query';
-import { ActionType, IActionData, IActionHandler } from './action-handler';
+import { ActionType, IActionData } from './action-handler';
+import { BaseAction } from './base.action';
 
-export abstract class BaseUpdateAction<T> implements IActionHandler {
+export abstract class BaseUpdateAction<T> extends BaseAction {
   public name: string = 'update';
   public type: ActionType = ActionType.UPDATE;
   public validator?: any;
 
-  constructor(private handler: ICommandHandler, private query: ISingleQuery<T>) {}
+  constructor(private handler: ICommandHandler, private query: ISingleQuery<T>) {
+    super();
+  }
 
-  public async handle(action: IActionData): Promise<T> {
+  public abstract authorize(action: IActionData): Promise<boolean>;
+
+  protected async perform(action: IActionData): Promise<T> {
     const id: string = action.params.id;
     await this.handler.handle({ id, ...action.data });
 
     return this.query.get(Id.fromString(id));
   }
-
-  public abstract authorize(action: IActionData): Promise<boolean>;
 }

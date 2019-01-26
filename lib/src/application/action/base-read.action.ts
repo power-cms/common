@@ -1,17 +1,19 @@
 import { Id } from '../../domain/id/id';
 import { ISingleQuery } from '../query/single.query';
-import { ActionType, IActionData, IActionHandler } from './action-handler';
+import { ActionType, IActionData } from './action-handler';
+import { BaseAction } from './base.action';
 
-export abstract class BaseReadAction<T> implements IActionHandler {
+export abstract class BaseReadAction<T> extends BaseAction {
   public name: string = 'read';
   public type: ActionType = ActionType.READ;
-  public validator?: any;
 
-  constructor(private query: ISingleQuery<T>) {}
-
-  public handle(action: IActionData): Promise<T> {
-    return this.query.get(Id.fromString(action.params.id));
+  constructor(private query: ISingleQuery<T>) {
+    super();
   }
 
   public abstract authorize(action: IActionData): Promise<boolean>;
+
+  protected perform(action: IActionData): Promise<T> {
+    return this.query.get(Id.fromString(action.params.id));
+  }
 }
